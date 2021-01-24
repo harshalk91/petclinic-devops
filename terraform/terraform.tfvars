@@ -1,0 +1,9 @@
+# AWS Config
+instance_name = "Jenkins"
+aws_access_key = ""
+aws_secret_key = ""
+aws_region = "ap-south-1"
+ami = "ami-02e60be79e78fef2"
+instance_type = "t2.medium"
+key_name = "jenkins-test"
+type = "jenkins"

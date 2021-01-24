@@ -2,7 +2,7 @@
 resource "aws_vpc" "eq-vpc" {
   cidr_block = "192.168.250.0/23"
   instance_tenancy = "default"
-  enable_dns_hostnames = "True"
+  enable_dns_hostnames = true
   tags = {
     Name = "eq-vpc"
   }
@@ -71,7 +71,7 @@ resource "aws_route_table_association" "ig-association" {
     aws_route_table.eq-public-rt
   ]
   route_table_id = aws_route_table.eq-public-rt.id
-  subnet_id = aws_subnet.eq-subnet-public-1
+  subnet_id = aws_subnet.eq-subnet-public-1.id
 }
 
 # Create Elastic IP for Nat Gateway
@@ -85,7 +85,7 @@ resource "aws_eip" "eq-eip" {
 # Create NAT Gateway
 resource "aws_nat_gateway" "eq-nat-gw" {
   allocation_id = aws_eip.eq-eip.id
-  subnet_id = aws_subnet.eq-subnet-public-1
+  subnet_id = aws_subnet.eq-subnet-public-1.id
   tags = {
     Name = "eq-nat-gw"
   }
@@ -116,5 +116,5 @@ resource "aws_route_table_association" "ng-association" {
     aws_route_table.eq-public-rt
   ]
   route_table_id = aws_route_table.eq-private-rt.id
-  subnet_id = aws_subnet.eq-subnet-private-1
+  subnet_id = aws_subnet.eq-subnet-private-1.id
 }

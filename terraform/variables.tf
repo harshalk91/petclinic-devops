@@ -4,11 +4,11 @@ variable "instance_name" {
   default = "Jenkins"
 }
 variable "aws_access_key" {
-  default = ""
+  default = "AKIA23LO2KZKEBDZXTUG"
 }
 
 variable "aws_secret_key" {
-  default = ""
+  default = "MRyPK6ql7GesQAV8kFTUTJmSlGfgL7OAUhDziX/2"
 }
 
 variable "aws_region" {
@@ -24,5 +24,8 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-  default = "demo_mediawiki"
+  default = "jenkins-test"
+}
+variable "type" {
+  default = "jenkins"
 }
