@@ -81,6 +81,7 @@ resource "aws_instance" "my-test-instance" {
               sudo yum install jenkins -y | tee -a >> /tmp/install.log
               sudo service jenkins start | tee -a >> /tmp/install.log
               sudo chkconfig --add jenkins | tee -a >> /tmp/install.log
+              sudo pip install ansible | tee -a >> /tmp/install.log
               EOF
   tags = {
     Name = var.instance_name
