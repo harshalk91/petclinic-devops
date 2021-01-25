@@ -1,10 +1,10 @@
 # Create VPC
 resource "aws_vpc" "eq-vpc" {
-  cidr_block = "192.168.250.0/23"
+  cidr_block = var.vpc_cidr
   instance_tenancy = "default"
   enable_dns_hostnames = true
   tags = {
-    Name = "eq-vpc"
+    Name = var.vpc_name
   }
 }
 
@@ -13,11 +13,11 @@ resource "aws_subnet" "eq-subnet-public-1" {
   depends_on = [
     aws_vpc.eq-vpc
   ]
-  availability_zone = "ap-south-1a"
-  cidr_block = "192.168.250.0/24"
+  availability_zone = var.availability_zone
+  cidr_block = var.public_cidr_block
   vpc_id = aws_vpc.eq-vpc.id
   tags = {
-    Name = "eq-subnet-public-1"
+    Name = var.public_subnet_name
   }
 }
 
@@ -26,11 +26,11 @@ resource "aws_subnet" "eq-subnet-private-1" {
   depends_on = [
     aws_vpc.eq-vpc
   ]
-  availability_zone = "ap-south-1a"
-  cidr_block = "192.168.251.0/24"
+  availability_zone = var.availability_zone
+  cidr_block = var.private_cidr_block
   vpc_id = aws_vpc.eq-vpc.id
   tags = {
-    Name = "eq-subnet-private-1"
+    Name = var.private_subnet_name
   }
 }
 
@@ -43,7 +43,7 @@ resource "aws_internet_gateway" "eq-igw" {
   vpc_id = aws_vpc.eq-vpc.id
 
   tags = {
-    Name = "eq-igw"
+    Name = var.igw_name
   }
 }
 
@@ -60,7 +60,7 @@ resource "aws_route_table" "eq-public-rt" {
   }
 
   tags = {
-    Name = "eq-public-rt"
+    Name = var.public_rt_name
   }
 }
 
@@ -89,7 +89,7 @@ resource "aws_nat_gateway" "eq-nat-gw" {
   allocation_id = aws_eip.eq-eip.id
   subnet_id = aws_subnet.eq-subnet-public-1.id
   tags = {
-    Name = "eq-nat-gw"
+    Name = var.nat_gw_name
   }
 }
 
@@ -105,7 +105,7 @@ resource "aws_route_table" "eq-private-rt" {
   }
 
   tags = {
-    Name = "eq-private-rt"
+    Name = var.private_rt_name
   }
 }
 

@@ -7,3 +7,7 @@ variable "ami" {}
 variable "instance_type" {}
 variable "key_name" {}
 variable "type" {}
+variable "availability_zone" {}
+variable "volume_name" {}
+variable "vpc_name" {}
+variable "public_subnet_name" {}

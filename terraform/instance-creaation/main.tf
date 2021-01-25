@@ -1,14 +1,14 @@
 resource "aws_ebs_volume" "ebs-vol" {
-  availability_zone = "ap-south-1a"
+  availability_zone = var.availability_zone
   size = 20
   tags = {
-    Name = "jenkins-vol"
+    Name = var.volume_name
   }
 }
 
 data "aws_vpc" "eq-vpc" {
   tags = {
-    Name = "eq-vpc"
+    Name = var.vpc_name
   }
   #count = length(data.aws_vpcs.eq-vpc.ids)
   #id    = tolist(data.aws_vpcs.eq-vpc.ids)[count.index]
@@ -19,7 +19,7 @@ data "aws_subnet" "subnet" {
   vpc_id = data.aws_vpc.eq-vpc.id
   filter {
     name = "tag:Name"
-    values = ["eq-subnet-public-1"]
+    values = [var.public_subnet_name]
   }
   #tags = {
   #  Name = "eq-subnet-public-1"
@@ -66,7 +66,7 @@ resource "aws_security_group" "eq-sec-grp" {
 }
 resource "aws_instance" "my-test-instance" {
   ami             = var.ami
-  availability_zone = "ap-south-1a"
+  availability_zone = var.availability_zone
   instance_type   = var.instance_type
   vpc_security_group_ids  = [aws_security_group.eq-sec-grp.id]
   subnet_id	  = data.aws_subnet.subnet.id
