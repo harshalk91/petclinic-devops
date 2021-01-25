@@ -2,7 +2,7 @@ module "create_vpc" {
   source = "./vpc"
 }
 
-module "instance-create" {
+module "create-instance" {
   source = "./instance-creaation"
   instance_name = var.instance_name
   ami = var.ami

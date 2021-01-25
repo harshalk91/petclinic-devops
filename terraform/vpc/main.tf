@@ -13,6 +13,7 @@ resource "aws_subnet" "eq-subnet-public-1" {
   depends_on = [
     aws_vpc.eq-vpc
   ]
+  availability_zone = "ap-south-1a"
   cidr_block = "192.168.250.0/24"
   vpc_id = aws_vpc.eq-vpc.id
   tags = {
@@ -25,6 +26,7 @@ resource "aws_subnet" "eq-subnet-private-1" {
   depends_on = [
     aws_vpc.eq-vpc
   ]
+  availability_zone = "ap-south-1a"
   cidr_block = "192.168.251.0/24"
   vpc_id = aws_vpc.eq-vpc.id
   tags = {
