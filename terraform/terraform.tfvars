@@ -20,3 +20,5 @@ igw_name = "eq-igw"
 public_rt_name = "eq-public-rt"
 nat_gw_name = "eq-nat-gw"
 private_rt_name = "eq-private-rt"
+
+app_instance_name = "eq-app-1"

@@ -13,8 +13,8 @@ module "create_vpc" {
   private_rt_name = var.private_rt_name
 }
 
-module "create-instance" {
-  source = "./instance-creaation"
+module "create-jenkins-instance" {
+  source = "./jenkins"
   instance_name = var.instance_name
   ami = var.ami
   instance_type = var.instance_type
@@ -27,4 +27,21 @@ module "create-instance" {
   volume_name = var.volume_name
   availability_zone = var.availability_zone
   public_subnet_name = var.public_subnet_name
+}
+
+module "create-app-instance" {
+  source = "./app"
+  instance_name = var.app_instance_name
+  ami = var.ami
+  instance_type = var.instance_type
+  key_name = var.key_name
+  type = var.type
+  aws_access_key = var.aws_access_key
+  aws_region = var.aws_region
+  aws_secret_key = var.aws_secret_key
+  vpc_name = var.vpc_name
+  volume_name = var.volume_name
+  availability_zone = var.availability_zone
+  private_subnet_name = var.private_subnet_name
+  public_cidr_block = var.public_cidr_block
 }
