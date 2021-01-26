@@ -8,7 +8,7 @@ terraform apply vpc.out
 
 ============================================
 # Creating Jenkins instance
-terraform plan -target=module.create-instance -out=create-instance.out \
+terraform plan -target=module.create-jenkins-instance -out=create-jenkins-instance.out \
 terraform apply create-instance.out
 
 ============================================
