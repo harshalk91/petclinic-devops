@@ -9,7 +9,7 @@ terraform apply vpc.out
 ============================================
 # Creating Jenkins instance
 terraform plan -target=module.create-jenkins-instance -out=create-jenkins-instance.out \
-terraform apply create-instance.out
+terraform apply create-jenkins-instance.out
 
 ============================================
 # Create app instance
